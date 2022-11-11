@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Contracts\LogoutResponse;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -23,14 +25,19 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/');
+            }
+        });
     }
-
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
+
     public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
