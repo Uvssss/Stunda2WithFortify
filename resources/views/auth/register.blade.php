@@ -1,4 +1,3 @@
-
 @extends('wrapper')
 @section('content')
 <div class="container">

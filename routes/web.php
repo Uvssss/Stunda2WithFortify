@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LogoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/home', 'home')->middleware(['auth', 'verified']);
+// Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+
+
+// es sakuma gribeju ko padarit. vairs ne i give up
+
+
+// lets fry andris brain  ima just show my fortify file
